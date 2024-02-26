@@ -33,16 +33,7 @@
       <div class="d-flex justify-content-center flex-column">
         
         <% 
-        fetch('https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=5')
-        .then(response => {
-          // Check if the response status is OK (status code 200-299)
-          if (!response.ok) {
-            throw new Error(`Network response was not ok, status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          data.forEach(function(item){ %>
+        dataFromAPI.forEach(function(item){ %>
             <h3><%= item.ccy %></h3>
             <div class="d-flex justify-content-center">
               <div class="p-2 flex-fill bd-highlight"><i>Buy</i></div>
@@ -50,16 +41,9 @@
             </div>
             <div class="d-flex justify-content-center">
               <div class="p-2 flex-fill bd-highlight"><strong><%= item.buy %></strong> </div>
-            <div class="p-2 flex-fill bd-highlight"><strong><%= item.sell %></strong></div>
+            <div class="p-2 flex-fill bd-highlight"><strong><%= item.sale %></strong></div>
             </div>
-            <% })
-
-        })
-        .catch(error => {
-          // Handle errors here
-          console.error('Error fetching data:', error);
-        }); %>
-        
+        <% }) %>
         
       </div>
     </div>  
